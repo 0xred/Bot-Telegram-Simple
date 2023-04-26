@@ -12,6 +12,12 @@ async def help(message: types.Message):
 	            f'/ask -  example /ask 2+2?\n' 
 	await MYBOT.send_message(message.chat.id, text_help, parse_mode='html')
 ###########################################################
+# /ask
+@dp.message_handler(commands=['ask'])
+async def help(message: types.Message):
+	xtext = message.text # 
+	await message.answer('[+] your ask about: '+xtext) # Get Only Your Username
+###########################################################
 @dp.message_handler() # For any text in chat
 async def echo(message: types.Message):
     await message.answer('[+] Wellcome To RedShadow Bot :) use /help') # Get Only Your Username

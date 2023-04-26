@@ -1,29 +1,37 @@
-import logging,requests 
-from aiogram import Bot, Dispatcher, executor, types
-################################################################
-headers = requests.utils.default_headers() #header
-headers.update({'User-Agent': 'Mozilla/5.0 (X22; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0',})
-##########################################################
-API_TOKEN = 'add token here'     #  <<<< ADD TOKEN HERE BRO
-##########################################################
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-##########################################################
-# Initialize bot and dispatcher
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
-##########################################################
-@dp.message_handler()
-async def echo(message: types.Message):
-    username = message.chat # this your username in telegram
-    mtext = message.text # full Text...
-    ###########################################
-        # code here :) FOR EXAMPLE HOW USE IT :)
-    await message.answer("[+] All information For Example : "+str(username)) # Get all information for user
-    await message.answer("[+] Wellcome : @"+str(username['username'])) # Get Only Your Username
-    await message.answer("[+] Your Text : "+str(mtext)) # Get All Your Messages
-    ###########################################
+from aiogram import Bot, Dispatcher, types, executor
+from asyncio import sleep
+###########################################################
+API_TOKEN = 'Token here bro' 
+MYBOT = Bot(API_TOKEN)
+dp = Dispatcher(MYBOT)
+###########################################################
+# /start
+@dp.message_handler(commands=['start'])
+async def start(message: types.Message):
+	username = message.from_user.username
+	msg = f"<b>Hello</b>, <i>{username}!</i>\n For Help use /help "
+	await MYBOT.send_message(message.chat.id, msg, parse_mode='html')
+###########################################################
+# /whoami
+@dp.message_handler(commands=['whoami'])
+async def whoami(message: types.Message):
+	username = message.from_user.username
+	id = message.from_user.id
+	whoami_msg = f"username: {username}\nid: {id}"
+	await MYBOT.send_message(message.chat.id, whoami_msg)
+###########################################################
+# /help
+@dp.message_handler(commands=['help'])
+async def help(message: types.Message):
+	text_help = f'/start - Start \n' \
+	            f'/whoami - Show Username and id \n' \
+	            f'/help - Just For Help \n' \
+	            f'/ask - just ask bot i dont have answer lol\n' 
+	await MYBOT.send_message(message.chat.id, text_help, parse_mode='html')
+###########################################################
+# /ask <<<< this for you ,, try write like /start /whoami /help ... it is easy
+###########################################################
 
-##########################################################
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+	executor.start_polling(dp, loop=True)
+

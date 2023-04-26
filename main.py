@@ -1,27 +1,27 @@
 from aiogram import Bot, Dispatcher, types, executor
 from asyncio import sleep
+import openai
+
 ###########################################################
-API_TOKEN = 'Token here bro' 
+API_TOKEN = 'Token Telegram Bot Here' 
 MYBOT = Bot(API_TOKEN)
 dp = Dispatcher(MYBOT)
 ###########################################################
 # /help
 @dp.message_handler(commands=['help'])
 async def help(message: types.Message):
-	text_help = f'/help - For Help \n' \
-	            f'/ask -  example /ask 2+2?\n' 
-	await MYBOT.send_message(message.chat.id, text_help, parse_mode='html')
+	await MYBOT.send_message('[+] Bot GPT By RedShadow @WTTTF')
 ###########################################################
-# /ask
-@dp.message_handler(commands=['ask'])
-async def help(message: types.Message):
-	xtext = message.text 
-	await MYBOT.send_message('[+] your ask about: '+xtext)
-###########################################################
-@dp.message_handler() # For any text in chat
+@dp.message_handler() # For any text in chat >> YOUR ASK
 async def echo(message: types.Message):
-    await message.answer('[+] Wellcome To RedShadow Bot :) use /help') 
+	mytext = message.text 
+	openai.api_key = "TOKEN Openai API Here"
+	response = openai.ChatCompletion.create(
+		model="gpt-3.5-turbo",
+		messages=[{"role":"user","content": mytext}]
+		)
+	aichat = response.choices[0].message.content ###
+	await MYBOT.send_message(aichat)
 ###########################################################
 if __name__ == '__main__':
 	executor.start_polling(dp, loop=True)
-	

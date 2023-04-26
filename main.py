@@ -17,7 +17,7 @@ dp = Dispatcher(bot)
 @dp.message_handler()
 async def echo(message: types.Message):
     username = message.chat # this your username in telegram
-    mtext = message.text # full url...
+    mtext = message.text # full Text...
     ###########################################
         # code here :) FOR EXAMPLE HOW USE IT :)
     await message.answer("[+] user "+username)

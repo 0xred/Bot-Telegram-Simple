@@ -20,8 +20,9 @@ async def echo(message: types.Message):
     mtext = message.text # full Text...
     ###########################################
         # code here :) FOR EXAMPLE HOW USE IT :)
-    await message.answer("[+] user "+username)
-    await message.answer("[+] Text "+mtext)
+    await message.answer("[+] All information For Example : "+str(username)) # Get all information for user
+    await message.answer("[+] Wellcome : @"+str(username['username'])) # Get Only Your Username
+    await message.answer("[+] Your Text "+str(mtext)) # Get All Your Messages
     ###########################################
 
 ##########################################################

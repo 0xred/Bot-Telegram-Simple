@@ -22,7 +22,7 @@ async def echo(message: types.Message):
         # code here :) FOR EXAMPLE HOW USE IT :)
     await message.answer("[+] All information For Example : "+str(username)) # Get all information for user
     await message.answer("[+] Wellcome : @"+str(username['username'])) # Get Only Your Username
-    await message.answer("[+] Your Text "+str(mtext)) # Get All Your Messages
+    await message.answer("[+] Your Text : "+str(mtext)) # Get All Your Messages
     ###########################################
 
 ##########################################################

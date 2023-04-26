@@ -15,12 +15,13 @@ async def help(message: types.Message):
 # /ask
 @dp.message_handler(commands=['ask'])
 async def help(message: types.Message):
-	xtext = message.text # 
-	await message.answer('[+] your ask about: '+xtext) # Get Only Your Username
+	xtext = message.text 
+	await MYBOT.send_message('[+] your ask about: '+xtext)
 ###########################################################
 @dp.message_handler() # For any text in chat
 async def echo(message: types.Message):
-    await message.answer('[+] Wellcome To RedShadow Bot :) use /help') # Get Only Your Username
+    await message.answer('[+] Wellcome To RedShadow Bot :) use /help') 
 ###########################################################
 if __name__ == '__main__':
 	executor.start_polling(dp, loop=True)
+	

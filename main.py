@@ -1,7 +1,6 @@
-import logging,requests
+import logging,requests 
 from aiogram import Bot, Dispatcher, executor, types
 ################################################################
-#################################################################
 headers = requests.utils.default_headers() #header
 headers.update({'User-Agent': 'Mozilla/5.0 (X22; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0',})
 ##########################################################
@@ -26,6 +25,5 @@ async def echo(message: types.Message):
     ###########################################
 
 ##########################################################
-
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

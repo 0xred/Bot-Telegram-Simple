@@ -1,2 +1,1 @@
-Bot Telegram
-USing API Openai in bot :)
+Bot Telegram : API Openai in bot :)
